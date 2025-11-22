@@ -168,6 +168,42 @@ leftMenuNavigationController.statusBarEndAlpha = 0
 rightMenuNavigationController.settings = leftMenuNavigationController.settings
 ```
 That's it.
+
+### SwiftUI Implementation
+
+For SwiftUI projects, you can use the provided View modifier:
+
+```swift
+import SwiftUI
+import SideMenu
+
+struct ContentView: View {
+    @State private var showMenu = false
+    
+    var body: some View {
+        VStack {
+            Button("Open Menu") {
+                showMenu = true
+            }
+        }
+        .sideMenu(isPresented: $showMenu, menu: {
+            AnyView(MenuView())
+        })
+    }
+}
+
+struct MenuView: View {
+    var body: some View {
+        VStack {
+            Text("Side Menu")
+                .font(.title)
+            // Add your menu items here
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.white)
+    }
+}
+```
 ### Customization
 #### SideMenuManager
 `SideMenuManager` supports the following:
